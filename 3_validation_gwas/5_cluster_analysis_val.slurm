@@ -2,7 +2,7 @@
 # =============================================================================
 # 5_cluster_analysis_val.slurm
 #
-# Run cluster analysis on validation (Phase 6) GWAS results to generate a
+# Run cluster analysis on validation (Phase 7) GWAS results to generate a
 # null cluster-size distribution for replication screening.
 #
 # Runs N_BATCHES independent bootstrap batches per cluster to build a robust
@@ -55,7 +55,7 @@ mkdir -p "${JOB_TMP}"
 trap "rm -rf '${JOB_TMP}'" EXIT
 
 for BATCH in $(seq 1 ${N_BATCHES}); do
-    FINAL_TXT="${CLUSTER_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}_${BATCH}.txt"
+    FINAL_TXT="${CLUSTER_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}_${BATCH}.txt"
 
     # Skip if already complete
     if [[ -s "${FINAL_TXT}" ]]; then
@@ -70,7 +70,7 @@ for BATCH in $(seq 1 ${N_BATCHES}); do
     export SPARK_LOCAL_DIRS="${BATCH_TMP}/spark"
     export _JAVA_OPTIONS="-Djava.io.tmpdir=${BATCH_TMP}"
 
-    RUN_PREFIX="${BATCH_TMP}/UKB_${MODALITY}_phase6_${IDX}_${BATCH}"
+    RUN_PREFIX="${BATCH_TMP}/UKB_${MODALITY}_phase7_${IDX}_${BATCH}"
 
     echo "Running batch ${BATCH} for cluster ${IDX} (N_LDRS=${N_LDRS})"
 
@@ -78,15 +78,15 @@ for BATCH in $(seq 1 ${N_BATCHES}); do
         --cluster \
         --out          "${RUN_PREFIX}" \
         --n-ldrs       "${N_LDRS}" \
-        --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
-        --ldr-cov      "${LDR_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_cov_top"* \
+        --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
+        --ldr-cov      "${LDR_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_cov_top"* \
         --covar        "${COVAR_FILE}" \
         --cat-covar-list "${CAT_COVAR}" \
-        --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_top"* \
+        --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_top"* \
         --geno-mt      "${GENO_MT}" \
         --grch37 \
         --spark-conf   "${SPARK_CONF}" \
-        --loco-preds   "${REL_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_loco_preds.h5" \
+        --loco-preds   "${REL_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_loco_preds.h5" \
         --sig-thresh   "${SIG_THRESH}" \
         --n-bootstrap  "${N_BOOTSTRAP}"
 

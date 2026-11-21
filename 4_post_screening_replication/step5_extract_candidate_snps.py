@@ -23,7 +23,7 @@ def main(args):
     # Stage-3 clumped loci for this tract
     clump_file = os.path.join(
         tract_dir,
-        f"UKB_{args.modality}_allphases_Tract_{args.roi}_clump_r2_0.1_step3.clumped"
+        f"UKB_{args.modality}_phase16_Tract_{args.roi}_clump_r2_0.1_step3.clumped"
     )
     if not os.path.exists(clump_file):
         raise FileNotFoundError(f"Clump file not found: {clump_file}")
@@ -32,7 +32,7 @@ def main(args):
 
     # Reference SNP info file (use any large cluster's .snpinfo as the universe)
     snpinfo_file = os.path.join(
-        sumstats_dir, f"UKB_{args.modality}_allphases_{args.snpinfo_cluster}.snpinfo"
+        sumstats_dir, f"UKB_{args.modality}_phase16_{args.snpinfo_cluster}.snpinfo"
     )
     if not os.path.exists(snpinfo_file):
         raise FileNotFoundError(f"SNP info file not found: {snpinfo_file}")
@@ -52,7 +52,7 @@ def main(args):
 
     out_file = os.path.join(
         tract_dir,
-        f"UKB_{args.modality}_allphases_{args.roi}_candidate_sig_snps.txt"
+        f"UKB_{args.modality}_phase16_{args.roi}_candidate_sig_snps.txt"
     )
     with open(out_file, "w") as f:
         for snp in candidate_snps:

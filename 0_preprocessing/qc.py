@@ -8,11 +8,11 @@ Scan raw fiber-cluster .mat files for outlier values, producing:
 
 Run example:
   python qc.py \
-      --phase Phase12 \
+      --phase Phase1 \
       --modality dti_MD \
       --work-root /path/to/OtherModality/ \
       --cluster-csv /path/to/Fiber_atlas_100points_FullName.csv \
-      --out-prefix /path/to/output/Phase12_dti_MD_badscan
+      --out-prefix /path/to/output/Phase1_dti_MD_badscan
 """
 
 import os
@@ -24,7 +24,7 @@ import scipy.io as sio
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--phase",      required=True,  help="Phase label, e.g. Phase12")
+    ap.add_argument("--phase",      required=True,  help="Phase label, e.g. Phase1")
     ap.add_argument("--modality",   required=True,  help="DTI modality, e.g. dti_MD")
     ap.add_argument("--work-root",  required=True,
                     help="Root directory containing modality subfolders")
@@ -41,7 +41,7 @@ def parse_args():
     ap.add_argument("--fiber-pts",   type=int,   default=100,
                     help="Points per fiber (default: 100)")
     ap.add_argument("--out-prefix",  required=True,
-                    help="Output file prefix, e.g. /path/to/Phase12_dti_MD_badscan")
+                    help="Output file prefix, e.g. /path/to/Phase1_dti_MD_badscan")
     return ap.parse_args()
 
 

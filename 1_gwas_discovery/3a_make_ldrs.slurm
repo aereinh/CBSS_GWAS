@@ -40,15 +40,15 @@ IDX=${SLURM_ARRAY_TASK_ID}
 
 # Read the recommended number of LDRs from the fPCA log (>=95% variance)
 N_LDRS=$(grep -A 2 "The number of LDRs for preserving varying proportions" \
-    "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}.log" \
+    "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}.log" \
     | tail -n 1 | awk '{print $6}')
 
 python "${HEIG_DIR}/heig.py" \
     --make-ldr \
-    --out          "${LDR_OUT}/UKB_${MODALITY}_allphases_${IDX}" \
-    --image        "${IMAGE_DIR}/UKB_${MODALITY}_allphases_${IDX}_images.h5" \
+    --out          "${LDR_OUT}/UKB_${MODALITY}_phase16_${IDX}" \
+    --image        "${IMAGE_DIR}/UKB_${MODALITY}_phase16_${IDX}_images.h5" \
     --n-ldrs       "${N_LDRS}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_"* \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_"* \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
     --threads      4

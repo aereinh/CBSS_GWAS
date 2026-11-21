@@ -28,7 +28,7 @@ def main(args):
 
     vgwas_file = os.path.join(
         vgwas_dir,
-        f"UKB_{args.modality}_allphases_{args.roi}_all_voxels_whole_genome.txt"
+        f"UKB_{args.modality}_phase16_{args.roi}_all_voxels_whole_genome.txt"
     )
     if not os.path.exists(vgwas_file):
         raise FileNotFoundError(f"Voxel GWAS file not found: {vgwas_file}")
@@ -42,7 +42,7 @@ def main(args):
         return
 
     out_file = os.path.join(
-        out_dir, f"UKB_{args.modality}_allphases_{args.roi}_sig_unique_snps.txt"
+        out_dir, f"UKB_{args.modality}_phase16_{args.roi}_sig_unique_snps.txt"
     )
     pd.DataFrame({"SNP": unique_snps}).to_csv(out_file, header=None, index=None)
     print(f"Wrote {len(unique_snps)} unique SNPs to: {out_file}")

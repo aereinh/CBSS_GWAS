@@ -27,12 +27,12 @@ FPCA_DIR="${MAIN_DIR}/fpca"
 LDR_DIR_VAL="${MAIN_DIR}/ldrs_val"
 SUMSTATS_DIR_VAL="${MAIN_DIR}/sumstats_val"
 REP_OUT="${MAIN_DIR}/replication/tract"
-SIG_THRESH=1e-3    # Relaxed threshold for validation (adjust as needed)
+SIG_THRESH=1e-4    # Reconstruction threshold in the validation sample (file tag 1e4)
 # ──────────────────────────────────────────────────────────────────────────
 
 mkdir -p "${REP_OUT}"
 
-CANDIDATE_SNPS="${MAIN_DIR}/post_screen/disc/tract/UKB_${MODALITY}_allphases_Tract_${TRACT}_candidate_sig_snps.txt"
+CANDIDATE_SNPS="${MAIN_DIR}/post_screen/disc/tract/UKB_${MODALITY}_phase16_Tract_${TRACT}_candidate_sig_snps.txt"
 
 if [ ! -f "${CANDIDATE_SNPS}" ]; then
     echo "No candidate SNP file for tract ${TRACT}. Skipping cluster ${CLUSTER}."
@@ -41,11 +41,11 @@ fi
 
 python "${HEIG_DIR}/heig.py" \
     --voxel-gwas \
-    --out          "${REP_OUT}/UKB_${MODALITY}_phase6_${CLUSTER}_vgwas" \
+    --out          "${REP_OUT}/UKB_${MODALITY}_phase7_${CLUSTER}_vgwas" \
     --n-ldrs       "${N_LDRS}" \
-    --ldr-sumstats "${SUMSTATS_DIR_VAL}/UKB_${MODALITY}_phase6_${CLUSTER}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${CLUSTER}_bases_top"* \
-    --ldr-cov      "${LDR_DIR_VAL}/UKB_${MODALITY}_phase6_${CLUSTER}_ldr_cov_top"* \
+    --ldr-sumstats "${SUMSTATS_DIR_VAL}/UKB_${MODALITY}_phase7_${CLUSTER}" \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${CLUSTER}_bases_top"* \
+    --ldr-cov      "${LDR_DIR_VAL}/UKB_${MODALITY}_phase7_${CLUSTER}_ldr_cov_top"* \
     --extract      "${CANDIDATE_SNPS}" \
     --threads      4 \
     --sig-thresh   "${SIG_THRESH}"

@@ -2,7 +2,7 @@
 # =============================================================================
 # 1_make_ldrs_val.slurm
 #
-# Compute LDRs for the validation sample (UKB Phase 6).
+# Compute LDRs for the validation sample (UKB Phase 7).
 # Uses the fPCA bases estimated from the discovery sample (all phases),
 # ensuring LDRs are projected onto the same functional basis.
 #
@@ -23,7 +23,7 @@
 # ── User-configurable paths ────────────────────────────────────────────────
 MODALITY="dti_FA"
 HEIG_DIR="/path/to/heig"
-IMAGE_DIR_VAL="/path/to/output/images_val"   # Phase 6 images (from step 1 on val set)
+IMAGE_DIR_VAL="/path/to/output/images_val"   # Phase 7 images (from 1_gwas_discovery/1_read_images.slurm)
 FPCA_DIR="/path/to/output/fpca"              # Discovery fPCA bases
 LDR_OUT_VAL="/path/to/output/ldrs_val"
 COVAR_FILE="/path/to/pheno_covar/covariates.txt"
@@ -42,10 +42,10 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
 python "${HEIG_DIR}/heig.py" \
     --make-ldr \
-    --out          "${LDR_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}" \
-    --image        "${IMAGE_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_images.h5" \
+    --out          "${LDR_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}" \
+    --image        "${IMAGE_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_images.h5" \
     --n-ldrs       "${N_LDRS}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
     --threads      4

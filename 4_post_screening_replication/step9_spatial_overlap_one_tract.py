@@ -56,7 +56,7 @@ def main():
     # Load replication result (step 8) to get locus list
     clump_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_clump_replication_by_phase6_{tag}.txt"
+        f"UKB_{modality}_phase16_Tract_{tract}_clump_replication_by_phase7_{tag}.txt"
     )
     if not os.path.exists(clump_file):
         raise FileNotFoundError(f"Replication file not found: {clump_file}")
@@ -69,10 +69,10 @@ def main():
     disc_all, rep_all = [], []
     for cid in clusters:
         disc_path = os.path.join(
-            disc_vox_dir, f"UKB_{modality}_allphases_{cid}_sig_vgwas_screen.txt"
+            disc_vox_dir, f"UKB_{modality}_phase16_{cid}_sig_vgwas_screen.txt"
         )
         rep_path = os.path.join(
-            rep_dir, f"UKB_{modality}_phase6_{cid}_sig_vgwas_screen_{tag}.txt"
+            rep_dir, f"UKB_{modality}_phase7_{cid}_sig_vgwas_screen_{tag}.txt"
         )
         if os.path.exists(disc_path):
             d = pd.read_csv(disc_path, sep="\t")[["INDEX", "CHR", "POS", "SNP"]].copy()
@@ -140,7 +140,7 @@ def main():
 
     out_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_clump_replication_spatial_overlap_{tag}.txt"
+        f"UKB_{modality}_phase16_Tract_{tract}_clump_replication_spatial_overlap_{tag}.txt"
     )
     output.to_csv(out_file, sep="\t", index=False)
     print(f"Wrote: {out_file}")

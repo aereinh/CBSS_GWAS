@@ -53,18 +53,18 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
 python "${HEIG_DIR}/heig.py" \
     --gwas \
-    --out          "${GWAS_OUT}/UKB_${MODALITY}_allphases_${IDX}" \
+    --out          "${GWAS_OUT}/UKB_${MODALITY}_phase16_${IDX}" \
     --n-ldrs       "${N_LDRS}" \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
-    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_top"* \
+    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_top"* \
     --geno-mt      "${GENO_MT}" \
     --grch37 \
     --spark-conf   "${SPARK_CONF}" \
-    --loco-preds   "${REL_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_loco_preds.h5" \
+    --loco-preds   "${REL_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_loco_preds.h5" \
     --threads      4 \
     --not-save-genotype-data
 
-rm -rf "${GWAS_OUT}/UKB_${MODALITY}_allphases_${IDX}_tmp/"
-rm -rf "${GWAS_OUT}/UKB_${MODALITY}_allphases_${IDX}_spark/"
+rm -rf "${GWAS_OUT}/UKB_${MODALITY}_phase16_${IDX}_tmp/"
+rm -rf "${GWAS_OUT}/UKB_${MODALITY}_phase16_${IDX}_spark/"
 rm -rf "${TMPDIR}"

@@ -35,13 +35,13 @@ IDX=${SLURM_ARRAY_TASK_ID}
 
 python "${HEIG_DIR}/heig.py" \
     --sumstats \
-    --out            "${SUMSTATS_OUT}/UKB_${MODALITY}_allphases_${IDX}" \
-    --ldr-gwas-heig  "${GWAS_DIR}/UKB_${MODALITY}_allphases_${IDX}.parquet"
+    --out            "${SUMSTATS_OUT}/UKB_${MODALITY}_phase16_${IDX}" \
+    --ldr-gwas-heig  "${GWAS_DIR}/UKB_${MODALITY}_phase16_${IDX}.parquet"
 
 # Delete raw .parquet only if preprocessing succeeded
 if [ $? -eq 0 ]; then
     echo "Preprocessing succeeded for cluster ${IDX}. Removing .parquet folder."
-    rm -rf "${GWAS_DIR}/UKB_${MODALITY}_allphases_${IDX}.parquet/"
+    rm -rf "${GWAS_DIR}/UKB_${MODALITY}_phase16_${IDX}.parquet/"
 else
     echo "Preprocessing FAILED for cluster ${IDX}. Keeping .parquet folder." >&2
 fi

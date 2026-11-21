@@ -55,7 +55,7 @@ def main():
     # Get locus position from spatial overlap file
     overlap_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_clump_replication_spatial_overlap_{tag}.txt"
+        f"UKB_{modality}_phase16_Tract_{tract}_clump_replication_spatial_overlap_{tag}.txt"
     )
     if not os.path.exists(overlap_file):
         raise FileNotFoundError(f"Spatial overlap file not found: {overlap_file}")
@@ -78,8 +78,8 @@ def main():
     # Load discovery and replication voxel hits for all clusters
     disc_all, rep_all = [], []
     for cid in clusters:
-        d_path = os.path.join(disc_vox_dir, f"UKB_{modality}_allphases_{cid}_sig_vgwas_screen.txt")
-        r_path = os.path.join(rep_dir,      f"UKB_{modality}_phase6_{cid}_sig_vgwas_screen_{tag}.txt")
+        d_path = os.path.join(disc_vox_dir, f"UKB_{modality}_phase16_{cid}_sig_vgwas_screen.txt")
+        r_path = os.path.join(rep_dir,      f"UKB_{modality}_phase7_{cid}_sig_vgwas_screen_{tag}.txt")
 
         if os.path.exists(d_path):
             d = pd.read_csv(d_path, sep="\t")[["INDEX", "CHR", "POS", "SNP", "P", "Z"]].copy()
@@ -137,7 +137,7 @@ def main():
 
     out_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_locus_{snp}_replicated_voxels.txt"
+        f"UKB_{modality}_phase16_Tract_{tract}_locus_{snp}_replicated_voxels.txt"
     )
     out.to_csv(out_file, sep="\t", index=False)
     print(f"Wrote {len(out)} overlapping voxels to: {out_file}")

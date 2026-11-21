@@ -40,8 +40,8 @@ IDX=${SLURM_ARRAY_TASK_ID}
 
 python "${HEIG_DIR}/heig.py" \
     --fpca \
-    --out     "${FPCA_OUT}/UKB_${MODALITY}_allphases_${IDX}" \
-    --image   "${IMAGE_DIR}/UKB_${MODALITY}_allphases_${IDX}_images.h5" \
+    --out     "${FPCA_OUT}/UKB_${MODALITY}_phase16_${IDX}" \
+    --image   "${IMAGE_DIR}/UKB_${MODALITY}_phase16_${IDX}_images.h5" \
     --threads 4 \
     --all-pc \
     --keep    "${KEEP_LIST}" \

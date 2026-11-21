@@ -52,17 +52,17 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
 python "${HEIG_DIR}/heig.py" \
     --relatedness \
-    --out          "${REL_OUT}/UKB_${MODALITY}_allphases_${IDX}" \
+    --out          "${REL_OUT}/UKB_${MODALITY}_phase16_${IDX}" \
     --n-ldrs       "${N_LDRS}" \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
-    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_top"* \
+    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_top"* \
     --geno-mt      "${GENO_MT}" \
     --grch37 \
     --spark-conf   "${SPARK_CONF}" \
     --threads      4
 
 # Clean up Spark and temp dirs
-rm -rf "${REL_OUT}/UKB_${MODALITY}_allphases_${IDX}_tmp/"
-rm -rf "${REL_OUT}/UKB_${MODALITY}_allphases_${IDX}_spark/"
+rm -rf "${REL_OUT}/UKB_${MODALITY}_phase16_${IDX}_tmp/"
+rm -rf "${REL_OUT}/UKB_${MODALITY}_phase16_${IDX}_spark/"
 rm -rf "${TMPDIR}"

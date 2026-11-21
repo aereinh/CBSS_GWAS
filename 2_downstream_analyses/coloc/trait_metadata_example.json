@@ -1,0 +1,21 @@
+{
+  "AD": 0.1777,
+  "insomina": 0.3206,
+  "EA": "quant",
+  "CP": "quant",
+  "ADHD": 0.1715,
+  "intelligence": "quant",
+  "RT": "quant",
+  "drinks": "quant",
+  "number_sexual_partners": "quant",
+  "stroke": 0.0563,
+  "t2d": 0.13370930561756456,
+  "glomerular_filtration_rate": "quant",
+  "liver_disease": 0.07612925165619217,
+  "ASD": 0.3965,
+  "BD": 0.1014,
+  "MDD": 0.3182,
+  "SCZ": 0.40863721257769203,
+  "coronary_atherosclerosis": 0.292929507165228,
+  "PD": 0.07
+}

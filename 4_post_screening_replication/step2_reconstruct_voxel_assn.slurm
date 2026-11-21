@@ -35,8 +35,8 @@ conda activate heig
 IDX=${SLURM_ARRAY_TASK_ID}
 N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
-SNP_LIST="${MAIN_DIR}/output_${MODALITY}/post_screen/disc/fibercluster/UKB_${MODALITY}_allphases_${IDX}_sig_unique_snps.txt"
-OUT_FILE="${MAIN_DIR}/output_${MODALITY}/post_screen/disc/fibercluster/UKB_${MODALITY}_allphases_${IDX}_vgwas_1e5"
+SNP_LIST="${MAIN_DIR}/output_${MODALITY}/post_screen/disc/fibercluster/UKB_${MODALITY}_phase16_${IDX}_sig_unique_snps.txt"
+OUT_FILE="${MAIN_DIR}/output_${MODALITY}/post_screen/disc/fibercluster/UKB_${MODALITY}_phase16_${IDX}_vgwas_1e5"
 
 if [ ! -f "${SNP_LIST}" ]; then
     echo "No significant SNP list for cluster ${IDX}. Skipping."
@@ -47,9 +47,9 @@ python "${HEIG_DIR}/heig.py" \
     --voxel-gwas \
     --out          "${OUT_FILE}" \
     --n-ldrs       "${N_LDRS}" \
-    --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_allphases_${IDX}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
-    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_cov_top"* \
+    --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_phase16_${IDX}" \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
+    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_cov_top"* \
     --extract      "${SNP_LIST}" \
     --threads      4 \
     --sig-thresh   1e-05

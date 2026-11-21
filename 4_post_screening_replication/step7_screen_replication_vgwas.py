@@ -27,7 +27,7 @@ def load_null_counts(cluster_id: int, tag: str, cluster_val_dir: str,
                      batches: range = range(1, 6)) -> np.ndarray:
     chunks, missing = [], []
     for b in batches:
-        fp = os.path.join(cluster_val_dir, f"UKB_{{}}_phase6_{cluster_id}_{b}.txt")
+        fp = os.path.join(cluster_val_dir, f"UKB_{{}}_phase7_{cluster_id}_{b}.txt")
         # Filled in main() once modality is known
         if os.path.exists(fp) and os.path.getsize(fp) > 0:
             chunks.append(np.atleast_1d(np.loadtxt(fp)))
@@ -83,7 +83,7 @@ def main():
     print(f"Cluster {cluster_id} | tag={tag} | threshold={thresh}")
 
     # Input: validation VGWAS hits at threshold=tag
-    sig_file = os.path.join(rep_dir, f"UKB_{modality}_phase6_{cluster_id}_vgwas.txt")
+    sig_file = os.path.join(rep_dir, f"UKB_{modality}_phase7_{cluster_id}_vgwas.txt")
     if not os.path.exists(sig_file):
         print(f"  No validation VGWAS file found: {sig_file}. Skipping.")
         return
@@ -97,7 +97,7 @@ def main():
 
     # Load validation null distribution
     null_file_pattern = os.path.join(
-        cluster_val_dir, f"UKB_{modality}_phase6_{cluster_id}_{{b}}.txt"
+        cluster_val_dir, f"UKB_{modality}_phase7_{cluster_id}_{{b}}.txt"
     )
     chunks, missing = [], []
     for b in range(1, 6):
@@ -131,7 +131,7 @@ def main():
     print(f"{len(count_screen)} SNPs pass | {sig_data_screen.shape[0]} associations kept.")
 
     out_path = os.path.join(
-        rep_dir, f"UKB_{modality}_phase6_{cluster_id}_sig_vgwas_screen_{tag}.txt"
+        rep_dir, f"UKB_{modality}_phase7_{cluster_id}_sig_vgwas_screen_{tag}.txt"
     )
     sig_data_screen.to_csv(out_path, sep="\t", index=False)
     print(f"Wrote: {out_path}")

@@ -47,10 +47,10 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
 python "${HEIG_DIR}/heig.py" \
     --voxel-gwas \
-    --out          "${VGWAS_OUT}/UKB_${MODALITY}_allphases_${IDX}_all_voxels_whole_genome" \
+    --out          "${VGWAS_OUT}/UKB_${MODALITY}_phase16_${IDX}_all_voxels_whole_genome" \
     --n-ldrs       "${N_LDRS}" \
-    --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_allphases_${IDX}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
-    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_cov_top"* \
+    --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_phase16_${IDX}" \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
+    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_cov_top"* \
     --threads      4 \
     --sig-thresh   "${SIG_THRESH}"

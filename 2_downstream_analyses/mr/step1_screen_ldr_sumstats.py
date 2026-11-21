@@ -11,8 +11,8 @@ Also writes a SNP list (for use with PLINK --extract in the next step).
 Run example:
   python step1_screen_ldr_sumstats.py \
       --cluster-id 42 \
-      --prefix /path/to/sumstats/UKB_dti_FA_allphases_42 \
-      --output /path/to/screened/UKB_dti_FA_allphases_42.txt
+      --prefix /path/to/sumstats/UKB_dti_FA_phase16_42 \
+      --output /path/to/screened/UKB_dti_FA_phase16_42.txt
 """
 
 import os

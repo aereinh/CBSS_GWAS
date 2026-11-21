@@ -26,7 +26,7 @@ def main(args):
     out_dir      = os.path.join(modality_dir, "post_screen", "disc", "fibercluster")
 
     data_file = os.path.join(
-        out_dir, f"UKB_{args.modality}_allphases_{args.roi}_vgwas_1e5.txt"
+        out_dir, f"UKB_{args.modality}_phase16_{args.roi}_vgwas_1e5.txt"
     )
     if not os.path.exists(data_file):
         print(f"Skipping ROI {args.roi}: file not found ({data_file})")
@@ -40,7 +40,7 @@ def main(args):
     null_chunks = []
     for batch in range(1, args.n_batches + 1):
         null_file = os.path.join(
-            cluster_dir, f"UKB_{args.modality}_allphases_{args.roi}_{batch}.txt"
+            cluster_dir, f"UKB_{args.modality}_phase16_{args.roi}_{batch}.txt"
         )
         if os.path.exists(null_file):
             null_chunks.append(np.loadtxt(null_file))
@@ -70,7 +70,7 @@ def main(args):
     # Re-read genome-wide hits (p < genome-wide threshold) and filter to screened SNPs
     vgwas_file = os.path.join(
         modality_dir, "voxelgwas",
-        f"UKB_{args.modality}_allphases_{args.roi}_all_voxels_whole_genome.txt"
+        f"UKB_{args.modality}_phase16_{args.roi}_all_voxels_whole_genome.txt"
     )
     sig_data = pd.read_csv(vgwas_file, sep="\t")
     sig_data  = sig_data[sig_data["P"] < args.sig_thresh]
@@ -78,7 +78,7 @@ def main(args):
     print(f"{sig_data_screen.shape[0]} voxel-SNP associations after screening.")
 
     out_file = os.path.join(
-        out_dir, f"UKB_{args.modality}_allphases_{args.roi}_sig_vgwas_screen.txt"
+        out_dir, f"UKB_{args.modality}_phase16_{args.roi}_sig_vgwas_screen.txt"
     )
     sig_data_screen.to_csv(out_file, sep="\t", index=False)
     print(f"Wrote: {out_file}")

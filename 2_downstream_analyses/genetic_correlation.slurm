@@ -60,11 +60,11 @@ run_gc() {
 
     python "${HEIG_DIR}/heig.py" \
         --heri-gc \
-        --out          "${OUT_DIR}/UKB_${MODALITY}_allphases_${IDX}_${TRAIT_NAME}" \
+        --out          "${OUT_DIR}/UKB_${MODALITY}_phase16_${IDX}_${TRAIT_NAME}" \
         --n-ldrs       "${N_LDRS}" \
-        --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_allphases_${IDX}" \
-        --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
-        --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_cov_top"* \
+        --ldr-sumstats "${SUMSTATS_DIR}/UKB_${MODALITY}_phase16_${IDX}" \
+        --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
+        --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_cov_top"* \
         --threads      4 \
         --ld-inv       "${LD_INV}" \
         --ld           "${LD}" \

@@ -33,7 +33,7 @@ module add plink/1.90b6.21
 
 ROI=${SLURM_ARRAY_TASK_ID}
 FIBER_DIR="${MAIN_DIR}/fibercluster"
-INPUT_FILE="${FIBER_DIR}/UKB_${MODALITY}_allphases_${ROI}_sig_vgwas_screen.txt"
+INPUT_FILE="${FIBER_DIR}/UKB_${MODALITY}_phase16_${ROI}_sig_vgwas_screen.txt"
 
 if [ ! -f "${INPUT_FILE}" ]; then
     echo "Skipping cluster ${ROI}: no screened hits file found."
@@ -48,10 +48,10 @@ plink \
     --clump    "${INPUT_FILE}" \
     --clump-kb 1000 \
     --clump-r2 0.6 \
-    --out      "${FIBER_DIR}/UKB_${MODALITY}_allphases_${ROI}_clump_r2_0.6_step1"
+    --out      "${FIBER_DIR}/UKB_${MODALITY}_phase16_${ROI}_clump_r2_0.6_step1"
 
 # Stage 2: fine clumping (input = stage-1 clumped file)
-STAGE1="${FIBER_DIR}/UKB_${MODALITY}_allphases_${ROI}_clump_r2_0.6_step1.clumped"
+STAGE1="${FIBER_DIR}/UKB_${MODALITY}_phase16_${ROI}_clump_r2_0.6_step1.clumped"
 
 if [ ! -f "${STAGE1}" ]; then
     echo "Stage 1 produced no output for cluster ${ROI}. Skipping stage 2."
@@ -63,6 +63,6 @@ plink \
     --clump    "${STAGE1}" \
     --clump-kb 500 \
     --clump-r2 0.1 \
-    --out      "${FIBER_DIR}/UKB_${MODALITY}_allphases_${ROI}_clump_r2_0.1_step2"
+    --out      "${FIBER_DIR}/UKB_${MODALITY}_phase16_${ROI}_clump_r2_0.1_step2"
 
 echo "Finished cluster ${ROI}"

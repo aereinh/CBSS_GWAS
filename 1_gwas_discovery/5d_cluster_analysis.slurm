@@ -56,19 +56,19 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE}")
 
 python "${HEIG_DIR}/heig.py" \
     --cluster \
-    --out          "${CLUSTER_OUT}/UKB_${MODALITY}_allphases_${IDX}_${BATCH}" \
+    --out          "${CLUSTER_OUT}/UKB_${MODALITY}_phase16_${IDX}_${BATCH}" \
     --n-ldrs       "${N_LDRS}" \
-    --bases        "${FPCA_DIR}/UKB_${MODALITY}_allphases_${IDX}_bases_top"* \
-    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_cov_top"* \
+    --bases        "${FPCA_DIR}/UKB_${MODALITY}_phase16_${IDX}_bases_top"* \
+    --ldr-cov      "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_cov_top"* \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
-    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_top"* \
+    --ldrs         "${LDR_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_top"* \
     --geno-mt      "${GENO_MT}" \
     --grch37 \
     --spark-conf   "${SPARK_CONF}" \
-    --loco-preds   "${REL_DIR}/UKB_${MODALITY}_allphases_${IDX}_ldr_loco_preds.h5" \
+    --loco-preds   "${REL_DIR}/UKB_${MODALITY}_phase16_${IDX}_ldr_loco_preds.h5" \
     --sig-thresh   "${SIG_THRESH}" \
     --n-bootstrap  "${N_BOOTSTRAP}"
 
-rm -rf "${CLUSTER_OUT}/UKB_${MODALITY}_allphases_${IDX}_${BATCH}_tmp/"
+rm -rf "${CLUSTER_OUT}/UKB_${MODALITY}_phase16_${IDX}_${BATCH}_tmp/"
 rm -rf "${TMPDIR}"

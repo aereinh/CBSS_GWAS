@@ -2,7 +2,7 @@
 # =============================================================================
 # 2_relatedness_val.slurm
 #
-# Compute LOCO predictions for the validation (Phase 6) sample.
+# Compute LOCO predictions for the validation (Phase 7) sample.
 # Mirrors 4_relatedness.slurm but uses validation LDRs and the smaller
 # genotype reference panel.
 #
@@ -48,16 +48,16 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE_VAL}")
 
 python "${HEIG_DIR}/heig.py" \
     --relatedness \
-    --out          "${REL_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}" \
+    --out          "${REL_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}" \
     --n-ldrs       "${N_LDRS}" \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
-    --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_top"* \
+    --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_top"* \
     --geno-mt      "${GENO_MT}" \
     --grch37 \
     --spark-conf   "${SPARK_CONF}" \
     --threads      4
 
-rm -rf "${REL_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}_tmp/"
-rm -rf "${REL_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}_spark/"
+rm -rf "${REL_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}_tmp/"
+rm -rf "${REL_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}_spark/"
 rm -rf "${TMPDIR}"

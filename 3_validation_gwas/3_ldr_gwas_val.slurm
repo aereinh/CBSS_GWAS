@@ -2,8 +2,8 @@
 # =============================================================================
 # 3_ldr_gwas_val.slurm
 #
-# Run LDR-level GWAS on the validation (Phase 6) sample.
-# Mirrors 5a_ldr_gwas.slurm but uses Phase 6 LDRs and LOCO predictions.
+# Run LDR-level GWAS on the validation (Phase 7) sample.
+# Mirrors 5a_ldr_gwas.slurm but uses Phase 7 LDRs and LOCO predictions.
 #
 # Array index = fiber cluster ID (1-indexed).
 # =============================================================================
@@ -48,18 +48,18 @@ N_LDRS=$(awk -F',' -v i=${IDX} 'NR == i+1 {print $2}' "${NLDR_FILE_VAL}")
 
 python "${HEIG_DIR}/heig.py" \
     --gwas \
-    --out          "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}" \
+    --out          "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}" \
     --n-ldrs       "${N_LDRS}" \
     --covar        "${COVAR_FILE}" \
     --cat-covar-list "${CAT_COVAR}" \
-    --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_top"* \
+    --ldrs         "${LDR_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_top"* \
     --geno-mt      "${GENO_MT}" \
     --grch37 \
     --spark-conf   "${SPARK_CONF}" \
-    --loco-preds   "${REL_DIR_VAL}/UKB_${MODALITY}_phase6_${IDX}_ldr_loco_preds.h5" \
+    --loco-preds   "${REL_DIR_VAL}/UKB_${MODALITY}_phase7_${IDX}_ldr_loco_preds.h5" \
     --threads      4 \
     --not-save-genotype-data
 
-rm -rf "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}_tmp/"
-rm -rf "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase6_${IDX}_spark/"
+rm -rf "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}_tmp/"
+rm -rf "${GWAS_OUT_VAL}/UKB_${MODALITY}_phase7_${IDX}_spark/"
 rm -rf "${TMPDIR}"

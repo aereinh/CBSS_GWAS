@@ -3,7 +3,7 @@
 step8_replication_one_tract.py
 
 Assess genetic replication for a single white-matter tract by checking whether
-validation (Phase 6) screened hits fall within ±window bp of each discovery
+validation (Phase 7) screened hits fall within ±window bp of each discovery
 LD-clumped locus.
 
 For each discovery locus, outputs "Yes" (replication) or "No".
@@ -88,7 +88,7 @@ def main():
     # Discovery clumped loci
     clump_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_clump_r2_0.1_step3.clumped"
+        f"UKB_{modality}_phase16_Tract_{tract}_clump_r2_0.1_step3.clumped"
     )
     if not os.path.exists(clump_file):
         raise FileNotFoundError(f"Clump file not found: {clump_file}")
@@ -105,7 +105,7 @@ def main():
     rep_hits = []
     n_missing = 0
     for cid in tract_clusters:
-        rep_file = os.path.join(rep_dir, f"UKB_{modality}_phase6_{cid}_sig_vgwas_screen_{tag}.txt")
+        rep_file = os.path.join(rep_dir, f"UKB_{modality}_phase7_{cid}_sig_vgwas_screen_{tag}.txt")
         if not os.path.exists(rep_file):
             n_missing += 1
             continue
@@ -140,7 +140,7 @@ def main():
 
     out_file = os.path.join(
         disc_dir,
-        f"UKB_{modality}_allphases_Tract_{tract}_clump_replication_by_phase6_{tag}.txt"
+        f"UKB_{modality}_phase16_Tract_{tract}_clump_replication_by_phase7_{tag}.txt"
     )
     clump.to_csv(out_file, sep="\t", index=False)
     print(f"Wrote: {out_file}")

@@ -91,9 +91,9 @@ python "${HEIG_DIR}/heig.py" \
     --voxel-gwas \
     --out          "${OUT_PREFIX}" \
     --n-ldrs       "${N_LDRS}" \
-    --ldr-sumstats "${LDR_SUMSTATS_DIR}/UKB_${MODALITY}_allphases_${CLUSTER}" \
-    --bases        "${BASES_DIR}/UKB_${MODALITY}_allphases_${CLUSTER}_bases_top"* \
-    --ldr-cov      "${LDR_COV_DIR}/UKB_${MODALITY}_allphases_${CLUSTER}_ldr_cov_top"* \
+    --ldr-sumstats "${LDR_SUMSTATS_DIR}/UKB_${MODALITY}_phase16_${CLUSTER}" \
+    --bases        "${BASES_DIR}/UKB_${MODALITY}_phase16_${CLUSTER}_bases_top"* \
+    --ldr-cov      "${LDR_COV_DIR}/UKB_${MODALITY}_phase16_${CLUSTER}_ldr_cov_top"* \
     --chr-interval "${CHR_INTERVAL}" \
     --voxels       "${VOX}"
 

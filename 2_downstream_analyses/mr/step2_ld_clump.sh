@@ -35,8 +35,8 @@ fi
 
 module load plink/1.90b6
 
-SUMSTATS="${SCREENED_DIR}/UKB_${MODALITY}_allphases_${roi}.txt"
-OUT_PREFIX="${SCREENED_DIR}/UKB_${MODALITY}_allphases_${roi}_clump_r2_0.01"
+SUMSTATS="${SCREENED_DIR}/UKB_${MODALITY}_phase16_${roi}.txt"
+OUT_PREFIX="${SCREENED_DIR}/UKB_${MODALITY}_phase16_${roi}_clump_r2_0.01"
 
 if [[ ! -f "${SUMSTATS}" ]]; then
     echo "No screened sumstats found: ${SUMSTATS}. Skipping."
@@ -55,8 +55,8 @@ plink \
 echo "Done: ${OUT_PREFIX}.clumped"
 
 # ── Get allele frequencies for the clumped SNPs ───────────────────────────────
-SNPLIST="${SCREENED_DIR}/UKB_${MODALITY}_allphases_${roi}_snplist.txt"
-FREQ_PREFIX="${SCREENED_DIR}/UKB_${MODALITY}_allphases_${roi}_freq"
+SNPLIST="${SCREENED_DIR}/UKB_${MODALITY}_phase16_${roi}_snplist.txt"
+FREQ_PREFIX="${SCREENED_DIR}/UKB_${MODALITY}_phase16_${roi}_freq"
 
 if [[ -f "${SNPLIST}" ]]; then
     plink \

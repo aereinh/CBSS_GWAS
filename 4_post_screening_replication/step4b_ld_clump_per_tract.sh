@@ -26,7 +26,7 @@ FIBER_DIR="${MAIN_DIR}/fibercluster"
 TRACT_DIR="${MAIN_DIR}/tract"
 LD_REF="/path/to/reference/g1000_eur"
 
-PREFIX="UKB_${MODALITY}_allphases"
+PREFIX="UKB_${MODALITY}_phase16"
 SUFFIX="clump_r2_0.1_step2.clumped"
 
 mkdir -p "${TRACT_DIR}"

@@ -110,8 +110,8 @@ LDR_DIR  <- paste0("/path/to/output/ldrs/")
 OUT_FILE <- paste0("/path/to/output/selLDRs.txt")
 
 # Log file pattern (adjust prefix if phase tag differs)
-LOG_PREFIX_FPCA <- paste0("UKB_", MODALITY, "_allphases_")
-LOG_PREFIX_LDR  <- paste0("UKB_", MODALITY, "_allphases_")
+LOG_PREFIX_FPCA <- paste0("UKB_", MODALITY, "_phase16_")
+LOG_PREFIX_LDR  <- paste0("UKB_", MODALITY, "_phase16_")
 
 fpca_log_files <- list.files(FPCA_DIR, pattern = "\\.log$", full.names = FALSE)
 ldr_log_files  <- list.files(LDR_DIR,  pattern = "\\.log$", full.names = FALSE)
